@@ -40,7 +40,7 @@ paths:
         400:
           description: "The IATA code is invalid or missing."
       security:
-      - google_jwt: []
+      - api_key: []
 
 
 securityDefinitions:
