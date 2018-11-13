@@ -22,6 +22,26 @@ host: "big-pool-r-and-d.appspot.com"
 schemes:
   - "https"
 paths:
+  "/airportNameTest":
+    get:
+      description: "Get the airport name test for a given IATA code."
+      operationId: "airportNameTest"
+      parameters:
+        -
+          name: iataCode
+          in: query
+          required: true
+          type: string
+      responses:
+        200:
+          description: "Success."
+          schema:
+            type: string
+        400:
+          description: "The IATA code is invalid or missing."
+      security:
+      - api_key: []
+
   "/airportName":
     get:
       description: "Get the airport name for a given IATA code."
@@ -40,8 +60,8 @@ paths:
         400:
           description: "The IATA code is invalid or missing."
       security:
-      - api_key: []
-
+      - google_jwt: []
+  
 
 securityDefinitions:
   # This section configures basic authentication with an API key.
