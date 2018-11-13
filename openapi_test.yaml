@@ -41,6 +41,7 @@ paths:
           description: "The IATA code is invalid or missing."
       security:
       - google_jwt: []
+      - google_id_token: []
   
 
 securityDefinitions:
@@ -59,4 +60,12 @@ securityDefinitions:
     x-google-jwks_uri: "https://www.googleapis.com/service_accounts/v1/jwk/big-pool-r-and-d@big-pool-r-and-d.iam.gserviceaccount.com"
     # This must match the "aud" field in the JWT. You can add multiple audiences to accept JWTs from multiple clients.
     x-google-audiences: "echo.endpoints.sample.google.com"
+  google_id_token:
+    authorizationUrl: ""
+    flow: "implicit"
+    type: "oauth2"
+    x-google-issuer: "https://accounts.google.com"
+    x-google-jwks_uri: "https://www.googleapis.com/oauth2/v3/certs"
+    # Your OAuth2 client's Client ID must be added here. You can add multiple client IDs to accept tokens form multiple clients.
+    x-google-audiences: "1052994802587-6pj95t0vsgq1o28faq1b2vgnuglj04od.apps.googleusercontent.com"
   
