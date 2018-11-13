@@ -41,6 +41,7 @@ paths:
           description: "The IATA code is invalid or missing."
       security:
       - api_key: []
+      - google_jwt: []
 
 
 securityDefinitions:
@@ -49,4 +50,14 @@ securityDefinitions:
     type: "apiKey"
     name: "key"
     in: "query"
+  google_jwt:
+    authorizationUrl: ""
+    flow: "implicit"
+    type: "oauth2"
+    # This must match the 'iss' field in the JWT.
+    x-google-issuer: "jwt-client.endpoints.sample.google.com"
+    # Update this with your service account's email address.
+    x-google-jwks_uri: "https://www.googleapis.com/service_accounts/v1/jwk/big-pool-r-and-d@appspot.gserviceaccount.com"
+    # This must match the "aud" field in the JWT. You can add multiple audiences to accept JWTs from multiple clients.
+    x-google-audiences: "echo.endpoints.sample.google.com"
   
