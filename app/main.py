@@ -35,11 +35,16 @@ def _base64_decode(encoded_str):
 def airportName():
     print('airportName_airportName_airportName_airportName')
     encoded_info = request.headers.get('X-Endpoint-API-UserInfo', None)
+    custom_header = request.headers.get('custom', None)
+    print("print custom header")
+    print(custom_header)
 
     if encoded_info:
         info_json = _base64_decode(encoded_info)
         user_info = json.loads(info_json)
-        print(user_info)
+        #print(user_info)
+        print("print user email")
+        print(user_info['email'])
     else:
         print('user info not provided')
     """Given an airport IATA code, return that airport's name."""
