@@ -13,6 +13,8 @@
 # limitations under the License.
 
 import logging
+import base64
+import json
 
 from flask import Flask
 from flask import request
@@ -21,8 +23,24 @@ from airports import Airports
 app = Flask(__name__)
 airport_util = Airports()
 
+
+def _base64_decode(encoded_str):
+    # Add paddings manually if necessary.
+    num_missed_paddings = 4 - len(encoded_str) % 4
+    if num_missed_paddings != 4:
+        encoded_str += b'=' * num_missed_paddings
+    return base64.b64decode(encoded_str).decode('utf-8')
+
 @app.route('/airportName', methods=['GET'])
 def airportName():
+    encoded_info = request.headers.get('X-Endpoint-API-UserInfo', None)
+
+    if encoded_info:
+        info_json = _base64_decode(encoded_info)
+        user_info = json.loads(info_json)
+        print(user_info)
+    else:
+        print('user info not provided')
     """Given an airport IATA code, return that airport's name."""
     iata_code = request.args.get('iataCode')
     if iata_code is None:
