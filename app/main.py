@@ -24,7 +24,7 @@ from airports import Airports
 app = Flask(__name__)
 airport_util = Airports()
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
