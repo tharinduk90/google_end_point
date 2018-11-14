@@ -15,7 +15,6 @@
 import logging
 import base64
 import json
-import logging
 
 from flask import Flask
 from flask import request
@@ -23,9 +22,6 @@ from airports import Airports
 
 app = Flask(__name__)
 airport_util = Airports()
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 
 def _base64_decode(encoded_str):
@@ -37,9 +33,7 @@ def _base64_decode(encoded_str):
 
 @app.route('/airportName', methods=['GET'])
 def airportName():
-    logger.info('call the airport name api')
     print('airportName_airportName_airportName_airportName')
-    logger.debug('call the airport name api in debug mode')
     encoded_info = request.headers.get('X-Endpoint-API-UserInfo', None)
     custom_header = request.headers.get('custom', None)
     print("print custom header")
