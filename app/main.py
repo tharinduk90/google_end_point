@@ -48,9 +48,9 @@ def airportName():
     if encoded_info:
         info_json = _base64_decode(encoded_info)
         user_info = json.loads(info_json)
-        #print(user_info)
-        print("print user email")
-        print(user_info['email'])
+        print(user_info)
+        #print("print user email")
+        #print(user_info['email'])
     else:
         print('user info not provided')
     """Given an airport IATA code, return that airport's name."""
